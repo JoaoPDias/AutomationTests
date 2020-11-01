@@ -1,7 +1,6 @@
-﻿using AutomatedUITest.Fixtures;
-using Xunit;
+﻿using Xunit;
 
-namespace iClipsTest.Fixtures
+namespace AutomatedUITest.Fixtures
 {
     [CollectionDefinition("Driver")]
     public class CollectionFixture : ICollectionFixture<EnvironmentFixture>

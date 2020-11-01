@@ -1,4 +1,4 @@
-﻿namespace iClipsTest.Fixtures
+﻿namespace AutomatedUITest.Fixtures
 {
     public enum DriverOption
     {

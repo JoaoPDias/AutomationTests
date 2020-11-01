@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
 namespace AutomatedUITest.PageObjects
@@ -17,9 +18,9 @@ namespace AutomatedUITest.PageObjects
         #region Construtor
         public Page(IWebDriver webDriver)
         {
-            Driver = webDriver??throw new ArgumentNullException("WebDriver is null");
+            Driver = webDriver ?? throw new ArgumentNullException("WebDriver is null");
             IClock clock = new SystemClock();
-            Wait = new WebDriverWait(clock,Driver,
+            Wait = new WebDriverWait(clock, Driver,
                                      TimeSpan.FromSeconds(15),
                                      TimeSpan.FromSeconds(2));
         }
@@ -31,6 +32,13 @@ namespace AutomatedUITest.PageObjects
             Actions actions = new Actions(Driver);
             actions.MoveToElement(element).Click().Perform();
         }
+        protected void PerformClick(By byElement)
+        {
+            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(byElement,"Checkout"));
+            Actions actions = new Actions(Driver);
+            actions.MoveToElement(element).Click().Perform();
+        }
+
 
         protected void PerformSendKeys(IWebElement element, string text)
         {
@@ -51,7 +59,26 @@ namespace AutomatedUITest.PageObjects
             }
 
         }
+        protected void PerformSendKeys(By byElement, string text)
+        {
+            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(byElement));
+            try
+            {
+                element.Clear();
+                element.SendKeys(text);
+            }
+            catch (InvalidElementStateException)
+            {
+                element.SendKeys(Keys.Control + "a");
+                element.SendKeys(Keys.Delete);
+                element.SendKeys(text);
+            }
+            catch (NoSuchElementException e)
+            {
+                throw e;
+            }
 
+        }
 
 
 
