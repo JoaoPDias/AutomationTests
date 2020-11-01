@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http.Headers;
 using AutomatedUITest.Fixtures;
 using AutomatedUITest.PageObjects;
 using FluentAssertions;
@@ -12,7 +13,8 @@ namespace AutomatedUITest
         private EnvironmentFixture _fixture;
         private InitialPage _initialPage;
         private ResultSearchPage _resultSearchPage;
-
+        private ViewCartPage _viewCartPage;
+        private Product _product;
         public DemoStoreTest(EnvironmentFixture fixture)
         {
             _fixture = fixture;
@@ -22,11 +24,13 @@ namespace AutomatedUITest
         [Fact]
         public void FinishShipping()
         {
+            _product = ProductBuilder.New().Build();
             _initialPage.Visit();
-            _initialPage.SearchProduct("H.264 Megapixel Surveillance Camera TL-SC3430");
+            _initialPage.SearchProduct(_product.Name);
             _resultSearchPage.SelectFirstItemOnPage();
             _resultSearchPage.AddToCart();
-            _resultSearchPage.Checkout();
+            _resultSearchPage.ViewCart();
+            _viewCartPage.ProceedToCheckout();
 
         }
 
