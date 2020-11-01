@@ -34,11 +34,15 @@ namespace AutomatedUITest.PageObjects
         }
         protected void PerformClick(By byElement)
         {
-            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(byElement,"Checkout"));
+            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(byElement));
             Actions actions = new Actions(Driver);
             actions.MoveToElement(element).Click().Perform();
         }
 
+        protected void WaitUntilElementIsInvisible(By byElement)
+        {
+            Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(byElement));
+        }
 
         protected void PerformSendKeys(IWebElement element, string text)
         {

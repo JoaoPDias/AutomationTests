@@ -11,14 +11,18 @@ namespace AutomatedUITest.PageObjects
     {
         private By _byItemFoundGrid;
         private By _byButtonToAddToCart;
-        private By _byButtonToCheckout;
+        private By _byButtonMyCart;
+        private By _byButtonToViewCart;
+        private By _byConfirmModal;
 
         public ResultSearchPage(IWebDriver driver) : base(driver)
         {
             _byItemFoundGrid = By.XPath("//div[@class=\"cm-gallery-item cm-item-gallery\"]/a");
             _byButtonToAddToCart =
                 By.XPath("//button[(contains(concat(' ',normalize-space(@class),' '),' ty-btn__add-to-cart '))]");
-            _byButtonToCheckout = By.XPath("//div[@class='ty-float-right']/button");
+            _byButtonMyCart = By.Id("cart_status_8");
+            _byButtonToViewCart = By.XPath("//div[@id='dropdown_8']//div[@class='ty-float-left']/a");
+            _byConfirmModal = By.XPath(" //body/div[5]/div[1]/div[1]");
         }
 
         public void SelectFirstItemOnPage()
@@ -29,11 +33,13 @@ namespace AutomatedUITest.PageObjects
         public void AddToCart()
         {
             PerformClick(_byButtonToAddToCart);
+            WaitUntilElementIsInvisible(_byConfirmModal);
         }
 
-        public void Checkout()
+        public void ViewCart()
         {
-            PerformClick(_byButtonToCheckout);
+            PerformClick(_byButtonMyCart);
+            PerformClick(_byButtonToViewCart);
         }
     }
 }
