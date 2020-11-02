@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AutomationIntegrationTest
+﻿namespace AutomationIntegrationTest
 {
     public class WeatherBuilder
     {
@@ -15,9 +11,11 @@ namespace AutomationIntegrationTest
 
         private WeatherBuilder()
         {
-            _weather = new Weather();
-            _weather.City = "Boston";
-            _weather.State = "MA";
+            _weather = new Weather
+            {
+                City = "Boston",
+                State = "MA"
+            };
         }
 
         public WeatherBuilder WithCity(string city)

@@ -1,25 +1,22 @@
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using AutomationIntegrationTest;
 using FluentAssertions;
 using RestSharp;
+using System.Net;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace AutomationTest
 {
     public class IntegrationTestsInterzoid
     {
-        private RestClient _client;
-        private string _license;
+        private readonly RestClient _client;
 
         public IntegrationTestsInterzoid()
         {
             _client = new RestClient("https://api.interzoid.com");
-            _license = "2872f3cbc6ec10316aeef635637eafec";
-            _client.AddDefaultHeader("Accept","application/json");
-            _client.AddDefaultHeader("x-api-key",_license);
+            var license = "94bf587f25c9c08f4d02ca47aa2fa9fb";
+            _client.AddDefaultHeader("Accept", "application/json");
+            _client.AddDefaultHeader("x-api-key", license);
         }
         /**In this situation, we can use Fact or Theory.
          * I prefer to use Fact to respect the Automated Test Standard: one test to one behavior*

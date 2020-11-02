@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace AutomatedUITest.PageObjects
 {
-    public class CheckoutPage:Page
+    public class CheckoutPage : Page
     {
         private readonly By _byCustomerAddressInput;
         private readonly By _byCustomerPostalCodeInput;
@@ -30,17 +30,16 @@ namespace AutomatedUITest.PageObjects
             _byRobotValidationText = By.XPath(" //p[contains(text(),'Please confirm you are not a robot.')]");
 
         }
-
-        public void DoCheckout()
+        //
+        public void DoCheckout(Customer customer)
         {
-            Customer customer = CustomerBuilder.New().Build();
-            PerformSendKeys(_byCustomerAddressInput,customer.Address);
-            PerformSendKeys(_byCustomerPostalCodeInput,customer.PostalCode);
-            PerformSendKeys(_byCustomerNameInput,customer.Name);
-            PerformSendKeys(_byCustomerPhoneInput,customer.Phone);
-            PerformSendKeys(_byCustomerEmailInput,customer.Email);
+            PerformSendKeys(_byCustomerAddressInput, customer.Address);
+            PerformSendKeys(_byCustomerPostalCodeInput, customer.PostalCode);
+            PerformSendKeys(_byCustomerNameInput, customer.Name);
+            PerformSendKeys(_byCustomerPhoneInput, customer.Phone);
+            PerformSendKeys(_byCustomerEmailInput, customer.Email);
             PerformClickWhenElementIsVisible(_byPaymentByPhoneOrderingRadioButton);
-            PerformSendKeys(_byCustomerPhoneConfirmation,customer.Phone);
+            PerformSendKeys(_byCustomerPhoneConfirmation, customer.Phone);
             PerformClick(_byAcceptTermsCheckbox);
             PerformClickWhenElementIsVisible(_byConfirmOrder);
             GetTextFromElement(_byRobotValidationText).Should().NotBeNullOrEmpty();

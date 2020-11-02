@@ -4,14 +4,14 @@ namespace AutomatedUITest
 {
     public class CustomerBuilder
     {
-        private readonly Customer _customer;
+        private Customer _customer;
 
         private CustomerBuilder()
         {
             _customer = new Customer();
             Faker faker = new Faker();
             _customer.Address = faker.Address.StreetAddress();
-            _customer.Name = faker.Name.FirstName() + faker.Name.LastName();
+            _customer.Name = $"{faker.Name.FirstName()} {faker.Name.LastName()}";
             _customer.Phone = faker.Phone.PhoneNumber("+###-##-###-####");
             _customer.Email = faker.Person.Email;
             _customer.PostalCode = faker.Address.ZipCode("#####-###");

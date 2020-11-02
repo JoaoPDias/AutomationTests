@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using AutomatedUITest.Helpers;
+﻿using AutomatedUITest.Helpers;
 using OpenQA.Selenium;
 
 namespace AutomatedUITest.PageObjects
 {
-    public class InitialPage:Page
+    public class InitialPage : Page
     {
         private readonly By _bySearchInputBox;
         private By _bySearchButton;
 
-        public InitialPage(IWebDriver driver):base(driver)
+        public InitialPage(IWebDriver driver) : base(driver)
         {
             _bySearchInputBox = By.Id("search_input");
             _bySearchButton = By.XPath("//button[@class=\"ty-search-magnifier\"]");
