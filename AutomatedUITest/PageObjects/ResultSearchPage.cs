@@ -9,11 +9,11 @@ namespace AutomatedUITest.PageObjects
 {
     public class ResultSearchPage : Page
     {
-        private By _byItemFoundGrid;
-        private By _byButtonToAddToCart;
-        private By _byButtonMyCart;
-        private By _byButtonToViewCart;
-        private By _byConfirmModal;
+        private readonly By _byItemFoundGrid;
+        private readonly By _byButtonToAddToCart;
+        private readonly By _byButtonMyCart;
+        private readonly By _byButtonToViewCart;
+        private readonly By _byConfirmModal;
 
         public ResultSearchPage(IWebDriver driver) : base(driver)
         {
