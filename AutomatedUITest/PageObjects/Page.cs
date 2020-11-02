@@ -85,7 +85,11 @@ namespace AutomatedUITest.PageObjects
         }
 
 
-
+        protected string GetTextFromElement(By by)
+        {
+            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
+            return element.Text;
+        }
 
 
 

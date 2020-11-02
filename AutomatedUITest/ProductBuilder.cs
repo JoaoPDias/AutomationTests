@@ -11,8 +11,8 @@ namespace AutomatedUITest
         private ProductBuilder()
         {
             _product = new Product();
-            _product.Name = "H.264 Megapixel Surveillance Camera TL-SC3430";
-            _product.UnitPrice = "$82.94";
+            _product.Title = "H.264 Megapixel Surveillance Camera TL-SC3430";
+            _product.UnitPrice = "82.94";
         }
 
         public static ProductBuilder New()
@@ -22,7 +22,7 @@ namespace AutomatedUITest
 
         public ProductBuilder WithName(string name)
         {
-            _product.Name = name;
+            _product.Title = name;
             return this;
         }
 

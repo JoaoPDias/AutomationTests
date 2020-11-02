@@ -20,16 +20,19 @@ namespace AutomatedUITest
             _fixture = fixture;
             _initialPage = new InitialPage(_fixture.Driver);
             _resultSearchPage = new ResultSearchPage(_fixture.Driver);
+            _viewCartPage = new ViewCartPage(_fixture.Driver);
         }
         [Fact]
         public void FinishShipping()
         {
             _product = ProductBuilder.New().Build();
             _initialPage.Visit();
-            _initialPage.SearchProduct(_product.Name);
+            _initialPage.SearchProduct(_product.Title);
             _resultSearchPage.SelectFirstItemOnPage();
             _resultSearchPage.AddToCart();
             _resultSearchPage.ViewCart();
+            _viewCartPage.GetProductTitle().Should().Be(_product.Title);
+            _viewCartPage.GetProductUnitPrice().Should().Be(_product.UnitPrice);
             _viewCartPage.ProceedToCheckout();
 
         }
