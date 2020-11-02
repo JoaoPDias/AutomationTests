@@ -15,17 +15,22 @@ namespace AutomatedUITest
         private ResultSearchPage _resultSearchPage;
         private ViewCartPage _viewCartPage;
         private Product _product;
+        private CheckoutPage _checkoutPage;
+        private Customer _customer;
+
         public DemoStoreTest(EnvironmentFixture fixture)
         {
             _fixture = fixture;
             _initialPage = new InitialPage(_fixture.Driver);
             _resultSearchPage = new ResultSearchPage(_fixture.Driver);
             _viewCartPage = new ViewCartPage(_fixture.Driver);
+            _checkoutPage = new CheckoutPage(_fixture.Driver);
         }
         [Fact]
-        public void FinishShipping()
+        public void FinalizeOrderValidatingRecaptchaMessage()
         {
             _product = ProductBuilder.New().Build();
+            _customer = CustomerBuilder.New().Build();
             _initialPage.Visit();
             _initialPage.SearchProduct(_product.Title);
             _resultSearchPage.SelectFirstItemOnPage();
@@ -34,6 +39,7 @@ namespace AutomatedUITest
             _viewCartPage.GetProductTitle().Should().Be(_product.Title);
             _viewCartPage.GetProductUnitPrice().Should().Be(_product.UnitPrice);
             _viewCartPage.ProceedToCheckout();
+            _checkoutPage.DoCheckout();
 
         }
 

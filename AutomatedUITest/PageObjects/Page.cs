@@ -38,6 +38,13 @@ namespace AutomatedUITest.PageObjects
             Actions actions = new Actions(Driver);
             actions.MoveToElement(element).Click().Perform();
         }
+        protected void PerformClickWhenElementIsVisible(By byElement)
+        {
+            IWebElement element = Wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(byElement));
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+            Actions actions = new Actions(Driver);
+            actions.MoveToElement(element).DoubleClick().Perform();
+        }
 
         protected void WaitUntilElementIsInvisible(By byElement)
         {

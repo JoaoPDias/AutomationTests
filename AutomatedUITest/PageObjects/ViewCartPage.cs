@@ -1,7 +1,6 @@
-using AutomatedUITest.PageObjects;
 using OpenQA.Selenium;
 
-namespace AutomatedUITest
+namespace AutomatedUITest.PageObjects
 {
     public class ViewCartPage : Page
     {
